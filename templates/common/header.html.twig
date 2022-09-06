@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="{{path('app_home')}}">ACCUEIL</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          {% if is_granted('ROLE_ADMIN') %}
+            <a class="nav-link text-white" href="{{path('app_admin')}}">Tableau de bord</a>
+          {% endif %}
+          <a class="nav-link text-white" href="{{path('app_article')}}">Articles</a>
+          <a class="nav-link text-white" href="{{path('app_create_article')}}">Créer article</a>
+          <a class="nav-link text-white" href="{{path('app_logout')}}">Deconnexion</a>
+        {% else %}
+          <a class="nav-link text-white" href="{{path('app_register')}}">S'inscrire</a>
+          <a class="nav-link text-white" href="{{path('app_login')}}">Se connecter</a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>

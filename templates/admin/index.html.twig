@@ -1,0 +1,24 @@
+{% extends 'admin/common/admin_template.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+<a class="nav-link p-3" href="{{path("app_home")}}">Retour à l'accueil</a>
+
+<div class="d-flex align-items-start py-4">
+    
+    <div class="nav flex-column nav-pills me-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active px-5" id="v-pills-article-tab" data-bs-toggle="pill" data-bs-target="#v-pills-article" type="button" role="tab" aria-controls="v-pills-article" aria-selected="true">Articles</button>
+        <button class="nav-link px-5" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-user" type="button" role="tab" aria-controls="v-pills-user" aria-selected="true">Utilisateurs</button>
+    </div> 
+
+    <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-article" role="tabpanel" aria-labelledby="v-pills-article-tab" tabindex="0">{% include "admin/article.html.twig" with {'articles':articles} %}</div>
+        <div class="tab-pane fade show" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab" tabindex="0">{% include "admin/users.html.twig" with {'users':users} %}</div>
+    </div>
+</div>
+
+
+
+{% endblock %}

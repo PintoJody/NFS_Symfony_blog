@@ -1,0 +1,32 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Modifier</th>
+        <th scope="col">Supprimer</th>
+        </tr>
+  </thead>
+  <tbody>
+  {% for article in articles %}
+    <tr>
+      <th scope="row">{{article.id}}</th>
+      <td>{{article.title}}</td>
+      <td>{{article.content}}</td>
+      <td>{{article.user.email}}</td>
+      {% if article.categorie is not empty %}
+        <td>{{article.categorie[0]}}</td>
+      {% else %}
+        <td>Non renseigné</td>
+      {% endif %}
+      <td>{{article.createdAt|date('d/m/Y')}}</td>
+      <td class="text-center"><i class="fa-solid fa-pencil text-warning"></i></td>
+      <td class="text-center"><i class="fa-solid fa-trash text-danger"></i></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
