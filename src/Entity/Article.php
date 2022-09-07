@@ -31,7 +31,7 @@ class Article
     #[ORM\Column]
     private ?\DateTimeImmutable $CreatedAt = null;
 
-    #[ORM\OneToOne(inversedBy: 'article', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'article', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

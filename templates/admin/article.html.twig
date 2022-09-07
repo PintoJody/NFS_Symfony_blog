@@ -24,8 +24,8 @@
         <td>Non renseigné</td>
       {% endif %}
       <td>{{article.createdAt|date('d/m/Y')}}</td>
-      <td class="text-center"><i class="fa-solid fa-pencil text-warning"></i></td>
-      <td class="text-center"><i class="fa-solid fa-trash text-danger"></i></td>
+      <td class="text-center"><a href="{{path('app_article_edit', {'id':article.id})}}"><i class="fa-solid fa-pencil text-warning"></i></a></td>
+      <td class="text-center"><a href="{{path('app_article_delete', {'id':article.id})}}"><i class="fa-solid fa-trash text-danger"></i></a></td>
     </tr>
   {% endfor %}
   </tbody>

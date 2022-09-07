@@ -46,4 +46,34 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+    #[Route('/article/delete/{id}', name: 'app_article_delete')]
+    public function deleteArticle(ManagerRegistry $doctrine, Article $article)
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
+
+    #[Route('/article/edit/{id}', name: 'app_article_edit')]
+    public function editArticle(ManagerRegistry $doctrine, Article $article, Request $request)
+    {
+        $entityManager = $doctrine->getManager();
+
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin');
+        }
+
+        return $this->render('article/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
